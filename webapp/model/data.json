@@ -1,0 +1,26 @@
+{
+	"products":[{
+		"id":"1",
+		"name":"Alice Mutton",
+		"price":"75",
+		"currency":"EUR",
+		"unitsOrdered":"20",
+		"unitsInStock":"90",
+		"sName":"Exotic Liquids",
+		"sAddress":"49 Gilbert St.",
+		"zipcity":"EC1 4SD / London",
+		"country":"UK"
+	},
+	{
+		"id":"2",
+		"name":"Ikura",
+		"price":"13",
+		"currency":"EUR",
+		"unitsOrdered":"10",
+		"unitsInStock":"4",
+		"sName":"Forêts d'érables",
+		"sAddress":"148 rue Chasseur",
+		"zipcity":"J2S 7S8 / Ste-Hyacinthe",
+		"country":"Canada"
+	}]
+}

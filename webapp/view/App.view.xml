@@ -1,0 +1,68 @@
+<mvc:View controllerName="manageproducts.ManageProducts2.controller.App" xmlns:semantic="sap.f.semantic" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m">
+	<App id="app">
+		<semantic:SemanticPage id="page" headerPinnable="false" toggleHeaderOnTitleClick="false">
+			<semantic:titleHeading>
+				<Title text="{i18n>title}" level="H2"/>
+			</semantic:titleHeading>
+			<semantic:content>
+				<IconTabBar id="idIconTabBar" select="onSelectFilter">
+					<items>
+						<IconTabFilter id="all" showAll="true" text="Products" key="All"/>
+						<IconTabSeparator/>
+						<IconTabFilter id="inStock" icon="sap-icon://message-success" iconColor="Positive" text="Plenty in Stocks" key="inStock"/>
+						<IconTabFilter id="shortage" icon="sap-icon://message-warning" iconColor="Critical" count="" text="Shortage" key="shortage"/>
+						<IconTabFilter id="outOfStock" icon="sap-icon://message-error" iconColor="Negative" count="" text="Out of Stock" key="outOfStock"/>
+					</items>
+					<content>
+						<Table id="table" width="auto" mode="MultiSelect" items="{ path: 'product>/products' }" noDataText="{i18n>tableNoDataText}" growing="true"
+							growingScrollToLoad="true" updateFinished=".onUpdateFinished">
+							<headerToolbar>
+								<OverflowToolbar>
+									<Title id="tableHeader" level="H3"/>
+									<ToolbarSpacer/>
+									<SearchField id="searchField" tooltip="{i18n>worklistSearchTooltip}" liveChange=".onSearch">
+										<layoutData>
+											<OverflowToolbarLayoutData maxWidth="200px" priority="NeverOverflow"/>
+										</layoutData>
+									</SearchField>
+								</OverflowToolbar>
+							</headerToolbar>
+							<columns>
+								<Column id="nameColumn">
+									<Text text="{i18n>productName}" id="nameColumnTitle"/>
+								</Column>
+								<Column id="supplierNameColumn" demandPopin="true" minScreenWidth="Tablet">
+									<Text text="{i18n>supplier}"/>
+								</Column>
+								<Column id="webAddressColumn" demandPopin="false" minScreenWidth="Tablet">
+									<Text text="{i18n>price}"/>
+								</Column>
+								<Column id="unitNumberColumn">
+									<Text text="{i18n>unitsOrdered}" id="unitNumberColumnTitle"/>
+								</Column>
+								<Column id="stockNumberColumn" hAlign="End">
+									<Text text="{i18n>stock}"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem type="Navigation" press=".onListItemPress">
+									<cells>
+										<ObjectIdentifier title="{product>name}"/>
+										<Text text="{product>sName}"/>
+										<ObjectNumber
+											number="{ parts:[{path:'product>price'},{path:'product>currency'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"
+											unit="{product>currency}"/>
+										<ObjectNumber number="{parts:[{path:'product>unitsOrdered'}],type: 'sap.ui.model.type.Currency'}" unit="PC"/>
+										<ObjectNumber number="{parts:[{path:'product>unitsInStock'}],type: 'sap.ui.model.type.Currency'}" unit="PC"
+											state="{ path:'product>unitsInStock',formatter: '.formatter.units'}"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</content>
+				</IconTabBar>
+			</semantic:content>
+		</semantic:SemanticPage>
+	</App>
+</mvc:View>
